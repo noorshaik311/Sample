@@ -1,68 +1,46 @@
-import java.io.*;
+import java.util.Arrays;
+ 
+class Del {
+ 
+    public static int[] removeTheElement(int[] arr, int index)
+    {
+ 
+        if (arr == null || index < 0
+            || index >= arr.length) {
+ 
+            return arr;
+        }
 
-public class LinkedList {
+        int[] anotherArray = new int[arr.length - 1];
 
-	Node head; // head of list
+        for (int i = 0, k = 0; i < arr.length; i++) {
+ 
+            
+            if (i == index) {
+                continue;
+            }
+ 
+            anotherArray[k++] = arr[i];
+        }
+ 
+        return anotherArray;
+    }
+ 
+    public static void main(String[] args)
+    {
+ 
+        int[] arr = { 1, 2, 3, 4, 5 };
+ 
+        System.out.println("Original Array: "
+                           + Arrays.toString(arr));
+ 
+        int index = 2;
 
-	static class Node {
-
-		int data;
-		Node next;
-
-		Node(int d)
-		{
-			data = d;
-			next = null;
-		}
-	}
-
-	public static LinkedList insert(LinkedList list, int data)
-	{
-		Node new_node = new Node(data);
-		new_node.next = null;
-
-		if (list.head == null) {
-			list.head = new_node;
-		}
-		else {
-			Node last = list.head;
-			while (last.next != null) {
-				last = last.next;
-			}
-
-			last.next = new_node;
-		}
-
-		return list;
-	}
-
-	public static void printList(LinkedList list)
-	{
-		Node currNode = list.head;
-	
-		System.out.print("LinkedList: ");
-	
-		while (currNode != null) {
-			System.out.print(currNode.data + " ");
-	
-			currNode = currNode.next;
-		}
-	}
-	
-	public static void main(String[] args)
-	{
-		LinkedList list = new LinkedList();
-
-		list = insert(list, 1);
-		list = insert(list, 2);
-		list = insert(list, 3);
-		list = insert(list, 4);
-		list = insert(list, 5);
-		list = insert(list, 6);
-		list = insert(list, 7);
-		list = insert(list, 8);
-
-		printList(list);
-	}
+        System.out.println("Index to be removed: " + index);
+ 
+        arr = removeTheElement(arr, index);
+ 
+        System.out.println("Resultant Array: "
+                           + Arrays.toString(arr));
+    }
 }
-
